@@ -14,4 +14,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/gpsSwitch"
         android:text="Enable GPS" />
+    <TextView
+        android:text="Distance to target:"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/targetDistanceTextView" />
+    <ProgressBar
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/targetDistanceProgressBar"
+        android:layout_marginBottom="42.5dp"
+        android:maxHeight="50sp"
+        android:minHeight="50sp"
+        android:max="100"
+        android:progress="0" />
 </LinearLayout>
