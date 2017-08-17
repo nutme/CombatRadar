@@ -32,9 +32,15 @@
         android:max="100"
         android:progress="0" />
     <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/targetDistanceHintText" />
+    <TextView
         android:text="Distance to target:"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/debugDistanceTextView" />
+        android:id="@+id/debugDistanceTextView"
+        android:visibility="invisible" />
 </LinearLayout>

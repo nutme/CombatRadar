@@ -60,14 +60,17 @@ namespace CombatRadar
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050004
-			public const int debugDistanceTextView = 2131034116;
+			// aapt resource value: 0x7f050005
+			public const int debugDistanceTextView = 2131034117;
 			
 			// aapt resource value: 0x7f050001
 			public const int gpsSwitch = 2131034113;
 			
 			// aapt resource value: 0x7f050000
 			public const int statusTextView = 2131034112;
+			
+			// aapt resource value: 0x7f050004
+			public const int targetDistanceHintText = 2131034116;
 			
 			// aapt resource value: 0x7f050003
 			public const int targetDistanceProgressBar = 2131034115;

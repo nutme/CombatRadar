@@ -5,6 +5,7 @@
     using Android.App;
     using Android.Widget;
     using Android.OS;
+    using Android.Views;
 
     [Activity(Label = "Combat Radar", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity, ILocationListener
@@ -27,8 +28,12 @@
             var gpsSwitchControl = FindViewById<Switch>(Resource.Id.gpsSwitch);
             var targetDistanceProgressControl = FindViewById<ProgressBar>(Resource.Id.targetDistanceProgressBar);
             var debugDistanceControl = FindViewById<TextView>(Resource.Id.debugDistanceTextView);
+            var targetDistanceHintControl = FindViewById<TextView>(Resource.Id.targetDistanceHintText);
 
-            _distanceControl = new DistanceControl(targetDistanceProgressControl, debugDistanceControl);
+            // Only for debugging porpuses
+            //debugDistanceControl.Visibility = ViewStates.Visible;
+
+            _distanceControl = new DistanceControl(targetDistanceProgressControl, targetDistanceHintControl, debugDistanceControl);
             _status = new Status(statusTextControl);
             _status.SetStatus("Ready!");
 
@@ -58,11 +63,11 @@
             if (e.IsChecked)
             {
                 _gpsEnabled = true;
-                _status.SetStatus("GPS enabled");
+                _status.SetStatus("Locating position");
                 _locationManager.RequestLocationUpdates(_locationProvider, 0, 0, this);
             } else {
                 _gpsEnabled = false;
-                _status.SetStatus("GPS disabled");
+                _status.SetStatus("Ready!");
                 _locationManager.RemoveUpdates(this);
             }
         }
@@ -86,17 +91,15 @@
 
         public void OnProviderDisabled(string provider)
         {
-            _status.SetStatus("Location provider disabled");
         }
 
         public void OnProviderEnabled(string provider)
         {
-            _status.SetStatus("Location provider enabled");
         }
 
         public void OnStatusChanged(string provider, Availability status, Bundle extras)
         {
-            _status.SetStatus($"Location status cjanhed: {status}");
+            _status.SetStatus("Active");
         }
 
         private void UpdateCurrentLocation(Location location)
@@ -109,8 +112,7 @@
             else
             {
                 _distanceControl.UpdateDistance(location);
-                var coordinatesAsString = $"lat: {_currentLocation.Latitude:f6}, long: {_currentLocation.Longitude:f6}";
-                _status.SetStatus(coordinatesAsString);
+                _status.SetStatus("Active");
             }
         }
     }
