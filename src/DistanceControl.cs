@@ -36,7 +36,7 @@
             {
                 progress = (int) (50 - distanceInMeters/10);
             }
-            else if (distanceInMeters > 50)
+            else if (distanceInMeters < 50)
             {
                 progress = (int) (100 - distanceInMeters);
             }
