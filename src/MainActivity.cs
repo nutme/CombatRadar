@@ -6,22 +6,6 @@
     using Android.Widget;
     using Android.OS;
 
-    public class DistanceControl
-    {
-        private readonly ProgressBar _targetDistanceProgressControl;
-
-        public DistanceControl(ProgressBar targetDistanceProgressControl)
-        {
-            _targetDistanceProgressControl = targetDistanceProgressControl;
-            _targetDistanceProgressControl.Max = 100;
-        }
-
-        public void UpdateDistance(Location from, Location to)
-        {
-            _targetDistanceProgressControl.Progress = 50;
-        }
-    }
-
     [Activity(Label = "Combat Radar", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity, ILocationListener
     {
@@ -42,8 +26,9 @@
             var statusTextControl = FindViewById<TextView>(Resource.Id.statusTextView);
             var gpsSwitchControl = FindViewById<Switch>(Resource.Id.gpsSwitch);
             var targetDistanceProgressControl = FindViewById<ProgressBar>(Resource.Id.targetDistanceProgressBar);
+            var debugDistanceControl = FindViewById<TextView>(Resource.Id.debugDistanceTextView);
 
-            _distanceControl = new DistanceControl(targetDistanceProgressControl);
+            _distanceControl = new DistanceControl(targetDistanceProgressControl, debugDistanceControl);
             _status = new Status(statusTextControl);
             _status.SetStatus("Ready!");
 
@@ -123,7 +108,7 @@
             }
             else
             {
-                _distanceControl.UpdateDistance(location, location);
+                _distanceControl.UpdateDistance(location);
                 var coordinatesAsString = $"lat: {_currentLocation.Latitude:f6}, long: {_currentLocation.Longitude:f6}";
                 _status.SetStatus(coordinatesAsString);
             }

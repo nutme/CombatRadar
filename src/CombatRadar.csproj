@@ -60,6 +60,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DistanceControl.cs" />
+    <Compile Include="Orienteering\Coordinates.cs" />
+    <Compile Include="Orienteering\DistanceCalculator.cs" />
+    <Compile Include="Orienteering\UnitOfLength.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
